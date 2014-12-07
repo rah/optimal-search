@@ -1,11 +1,13 @@
 #! /usr/env/python
 """
 Simple utilities to convert excel files with
-multiple sheets into separate csv formats
+multiple sheets into separate csv formats and then
+write that format into csv files
 """
 import xlrd
+import os.path
 
-data_dir = "../data/SNAILS/ANALYSIS"
+data_dir = "../data"
 files = ["84-10-19 tvl.xls"]
 
 
@@ -27,7 +29,7 @@ def format_line(values, sep=','):
     return line
 
 
-def convert_to_csv(filename):
+def convert_to_csv_format(filename):
     '''
     Convert an excel workbook into csv format. For each sheet
     an array of lines will be returned. The result provides a
@@ -55,6 +57,31 @@ def convert_to_csv(filename):
     return result
 
 
-if __name__ == "__main__":
+def write_csv_to_file(data, data_dir, file_prefix):
+    '''
+    Take a dictionary of csv formatted data and write to csv files
+    '''
+    if file_prefix is None:
+        file_prefix = ""
+
+    for key in data.keys():
+        csv_file = data_dir + '/' + file_prefix + "-" + key + ".csv"
+        if os.path.exists(csv_file):
+            continue
+
+        f = open(csv_file, 'w')
+        lines = data[key]
+
+        for line in lines:
+            f.write(line + '\n')
+
+        f.close()
+
+
+def test():
     for file in files:
-        print convert_to_csv(file)
+        data = convert_to_csv_format(file)
+        write_csv_to_file(data, data_dir, "test")
+
+if __name__ == "__main__":
+    test()
