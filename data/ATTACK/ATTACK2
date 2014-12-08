@@ -1,0 +1,10 @@
+
+#Snail attack data, all responses with intermediate responses
+#only scoring half value.
+#   Distance         No. Responses
+       0.0              10.0
+      10.0               8.0
+      20.0               4.5
+      30.0               1.0
+      40.0               1.5
+      50.0               0.0

@@ -1,0 +1,82 @@
+Track Analysis - Methods
+========================
+
+If absolute values of turns cover a range less than 180 degrees the data
+does not have to be considered circular (Batschelet, 1965).
+
+Mean Linear Displacement 
+------------------------ 
+
+[1] Linear displacement per step for each individual averaged across
+similar trials to calculate mean linear displacement. Compared with
+ANOVA using Tukey post hoc comparisions (Sokal and Rohlf, 1981),
+performed at selected steps (5, 10, 15, 20). Not performed among steps
+due to high degree of autocorrelation. 
+
+[4] Compared beline distances of before and after capture
+
+Mean Step Length
+----------------
+
+[1] Determined an average step length for each individual and averaged
+values for each experimental trial. Step lengths compared with ANOVA
+using Tukey post hoc comparisions (Sokal and Rohlf, 1981)
+
+
+Throughness
+-----------
+
+[1] Sensitive to change in linear displacement and may be affected by
+exceptionally long steps. Measured for a large number of steps (20).
+Provide a good relative comparason of average search efficiency among
+trials. Indices compared with z-test (Sokal and Rohlf, 1981)
+
+Straightness
+------------
+
+[1] Indices compared with z-test (Sokal and Rohlf, 1981)
+
+Turning Angle Frequency Distribution
+-------------------------------------
+
+[1] Comparisons between empirical distributions used Kolmogorov-Smirnov
+two saple test for large unequal samples sizes (Batschelet, 1981; Sokal
+and Rohlf, 1981). Comparisons between empirical and theoretical
+distributions done using Kolmogorov-Smirnov goodnes of fit test for
+intrinsic hypotheses (Sokal and Rohlf, 1981)
+
+Turning Direction
+-----------------
+
+[1] Assigned 1 to right and -1 to left and analysed with runs test
+(Brown and Downhower 1988)
+
+[3] Number of turns approx equal, showed no obvious patten.
+
+[4] Data for each sample and pooled data arranged in 2 x 2 contingency
+tables in couplets of successive turns (nth vs (n+1)th direction) right
+right, right left, left right, left left), and G (log likeihood ratio
+statistic calculated.
+
+Rate of Change of Direction
+---------------------------
+
+[3] Change in direction in degrees per minute. Basal level of 300
+increasing to 1300 after feeding. Pooled results of replicates and
+plotted mean of first, second ... values of r.c.d. Return to basal level
+took about 5 minutes. Hassel & Murdie, 1973 found 30 seconds with
+houseflies. Banks, 1957 found coccinellids returned within 1 minute.
+
+Meander Ratio
+-------------
+
+[4] Length of search path : beeline distance moved. Comparisons between
+trials used Wilcoxon's two-sample test (one-tailed test)
+
+References
+-----------
+
+[1] Winkelman, D.L. et. al., 1991
+[2] Kareiva and Shigesada, 1983
+[3] Evans
+[4] Zach and Falls, 1976
