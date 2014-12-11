@@ -11,6 +11,7 @@ def runsim():
 
     for i in range(100):
         mover.move()
+        print mover.direction
 
     x, y = mover.get_movement()
     plt.plot(x, y)

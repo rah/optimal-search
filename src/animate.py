@@ -8,10 +8,11 @@ class Animate:
         # basic attributes
         self.direction = 0.0
         self.speed = 1.0
+
+        # Memory of places visited
         self.X = []
         self.Y = []
 
-        # Memory of places visited
         self.curr_x = 0.0
         self.curr_y = 0.0
 
@@ -19,7 +20,7 @@ class Animate:
         self.Y.append(self.curr_y)
 
     def move(self):
-        self.direction += self.angle_turned()
+        self.set_direction(self.angle_turned())
         distance = self.distance_moved(self.speed)
 
         x, y = self.relMove(self.direction, distance)
@@ -33,10 +34,22 @@ class Animate:
         '''
         return the relative x, y coordinates give direction and distance
         '''
-        x = distance * cos(radians(direction))
-        y = distance * sin(radians(direction))
+        x = distance * cos(radians(float(direction)))
+        y = distance * sin(radians(float(direction)))
 
         return x, y
+
+    def set_direction(self, angle_turned):
+        '''
+        direction is 0 - 360 degrees, if the angle turned
+        added to the current direction and is less than 0
+        we need to reset
+        '''
+        self.direction += angle_turned
+        if self.direction < 0.0:
+            self.direction = 360.0 + self.direction
+        if self.direction > 360.0:
+            self.direction = self.direction - 360.0
 
     def angle_turned(self):
         max_turn = 30.0
