@@ -4,24 +4,33 @@ from math import cos, sin, radians
 
 class Animate:
 
-    def __init__(self):
+    def __init__(
+            self,
+            start_direction=0.0,
+            max_speed=1.0,
+            max_turn=30.0,
+            probability_positive_turn=0.5,
+            start_x=0.0,
+            start_y=0.0
+    ):
         # basic attributes
-        self.direction = 0.0
-        self.speed = 1.0
+        self.direction = start_direction
+        self.max_speed = max_speed
+        self.max_turn = max_turn
+        self.positive_turn = probability_positive_turn
+
+        self.curr_x = start_x
+        self.curr_y = start_y
 
         # Memory of places visited
         self.X = []
         self.Y = []
-
-        self.curr_x = 0.0
-        self.curr_y = 0.0
-
         self.X.append(self.curr_x)
         self.Y.append(self.curr_y)
 
     def move(self):
         self.set_direction(self.angle_turned())
-        distance = self.distance_moved(self.speed)
+        distance = self.distance_moved(self.max_speed)
 
         x, y = self.relMove(self.direction, distance)
         self.curr_x += x
@@ -52,15 +61,20 @@ class Animate:
             self.direction = self.direction - 360.0
 
     def angle_turned(self):
-        max_turn = 30.0
-        turn = max_turn * random.random()
+        '''
+        minimal implementation, should be replaced by subclasses
+        '''
+        turn = self.max_turn * random.random()
 
-        if random.random() > 0.5:
-            return -(turn)
-        else:
+        if random.random() > self.positive_turn:
             return turn
+        else:
+            return -(turn)
 
     def distance_moved(self, speed):
+        '''
+        minimal implementation, should be replaced by subclasses
+        '''
         return random.random() * speed
 
     def get_movement(self):
