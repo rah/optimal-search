@@ -3,7 +3,9 @@ from math import cos, sin, radians
 
 
 class Animate:
-
+    '''
+    A simple entity that can move around randomly
+    '''
     def __init__(
             self,
             start_direction=0.0,

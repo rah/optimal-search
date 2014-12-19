@@ -13,10 +13,11 @@ class Searcher(Animate):
                  start_x=0.0,
                  start_y=0.0,
                  giving_up_time=0.0):
-        super(start_direction,
-              max_speed,
-              max_turn,
-              probability_positive_turn,
-              start_x,
-              start_y)
+        super(Searcher, self).__init__(
+            start_direction,
+            max_speed,
+            max_turn,
+            probability_positive_turn,
+            start_x,
+            start_y)
         self.giving_up_time = giving_up_time
