@@ -4,13 +4,12 @@ from animate import Animate
 from searcher import Searcher
 
 
-def runsim(clazz=Animate, *args):
+def runsim(mover, steps):
     '''
     run a simple simulation of movement
     '''
-    mover = clazz(*args)
 
-    for i in range(100):
+    for i in range(steps):
         mover.move()
         print mover.direction
 
@@ -18,5 +17,10 @@ def runsim(clazz=Animate, *args):
     plt.plot(x, y)
 
 
-runsim(Animate, 90.0, 1.0, 180.0, 0.75, 0.0, 0.0)
-runsim(Searcher, 90.0, 1.0, 180.0, 0.75, 0.0, 0.0, 0)
+def run_animate():
+    runsim(Animate(), 100)
+
+
+def run_searcher():
+    s = Searcher(90.0, 1.0, 180.0, 0.75, 0.0, 0.0)
+    runsim(s, 200)

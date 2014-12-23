@@ -14,9 +14,7 @@ class Searcher(Animate):
                  max_turn=30.0,
                  probability_positive_turn=0.5,
                  start_x=0.0,
-                 start_y=0.0,
-                 giving_up_time=0,
-                 time_since_encounter=MAX_TIME_SINCE_ENC):
+                 start_y=0.0):
         # super(Searcher, self).__init__(
         Animate.__init__(
             self,
@@ -26,5 +24,5 @@ class Searcher(Animate):
             probability_positive_turn,
             start_x,
             start_y)
-        self.giving_up_time = giving_up_time
-        self.time_since_encounter = time_since_encounter
+        self.giving_up_time = 0
+        self.time_since_encounter = Searcher.MAX_TIME_SINCE_ENC
