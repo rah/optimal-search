@@ -2,7 +2,7 @@ import random
 from math import cos, sin, radians
 
 
-class Animate:
+class Animate(object):
     '''
     A simple entity that can move around randomly
     '''

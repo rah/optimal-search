@@ -1,3 +1,4 @@
+import sys
 from animate import Animate
 
 
@@ -5,6 +6,8 @@ class Searcher(Animate):
     '''
     Simple searcher that has a concept of time and encounters
     '''
+    MAX_TIME_SINCE_ENC = sys.maxint
+
     def __init__(self,
                  start_direction=0.0,
                  max_speed=1.0,
@@ -12,8 +15,11 @@ class Searcher(Animate):
                  probability_positive_turn=0.5,
                  start_x=0.0,
                  start_y=0.0,
-                 giving_up_time=0.0):
-        super(Searcher, self).__init__(
+                 giving_up_time=0,
+                 time_since_encounter=MAX_TIME_SINCE_ENC):
+        # super(Searcher, self).__init__(
+        Animate.__init__(
+            self,
             start_direction,
             max_speed,
             max_turn,
@@ -21,3 +27,4 @@ class Searcher(Animate):
             start_x,
             start_y)
         self.giving_up_time = giving_up_time
+        self.time_since_encounter = time_since_encounter
