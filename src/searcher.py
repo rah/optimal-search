@@ -13,8 +13,8 @@ class Searcher(Animate):
                  max_speed=1.0,
                  max_turn=30.0,
                  probability_positive_turn=0.5,
-                 start_x=0.0,
-                 start_y=0.0):
+                 x_pos=0.0,
+                 y_pos=0.0):
         # super(Searcher, self).__init__(
         Animate.__init__(
             self,
@@ -22,7 +22,7 @@ class Searcher(Animate):
             max_speed,
             max_turn,
             probability_positive_turn,
-            start_x,
-            start_y)
+            x_pos,
+            y_pos)
         self.giving_up_time = 0
         self.time_since_encounter = Searcher.MAX_TIME_SINCE_ENC

@@ -1,28 +1,32 @@
 import random
 from math import cos, sin, radians
+from entity import Entity
 
 
-class Animate(object):
+class Animate(Entity):
     '''
     A simple entity that can move around randomly
     '''
+
     def __init__(
             self,
             start_direction=0.0,
             max_speed=1.0,
             max_turn=30.0,
             probability_positive_turn=0.5,
-            start_x=0.0,
-            start_y=0.0
-    ):
+            x_pos=0.0,
+            y_pos=0.0):
+
+        Entity.__init__(self, x_pos, y_pos)
+
         # basic attributes
         self.direction = start_direction
         self.max_speed = max_speed
         self.max_turn = max_turn
         self.positive_turn = probability_positive_turn
 
-        self.curr_x = start_x
-        self.curr_y = start_y
+        self.curr_x = x_pos
+        self.curr_y = y_pos
 
         # Memory of places visited
         self.X = []

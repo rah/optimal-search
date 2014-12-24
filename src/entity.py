@@ -6,8 +6,8 @@ class Entity(object):
     def __init__(
             self,
             energy=0.0,
-            curr_x=0.0,
-            curr_y=0.0):
+            x_pos=0.0,
+            y_pos=0.0):
         self.energy = energy
-        self.curr_x = curr_x
-        self.curr_y = curr_y
+        self.x_pos = x_pos
+        self.y_pos = y_pos
