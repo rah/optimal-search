@@ -11,7 +11,7 @@ def runsim(mover, steps):
 
     for i in range(steps):
         mover.move()
-        print mover.direction
+        # print mover.direction
 
     x, y = mover.get_movement()
     plt.plot(x, y)

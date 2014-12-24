@@ -43,7 +43,7 @@ class Animate(object):
 
     def relMove(self, direction, distance):
         '''
-        return the relative x, y coordinates give direction and distance
+        return the relative x, y coordinates given direction and distance
         '''
         x = distance * cos(radians(float(direction)))
         y = distance * sin(radians(float(direction)))
