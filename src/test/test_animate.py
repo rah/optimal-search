@@ -9,7 +9,14 @@ class TestAnimate(unittest.TestCase):
 
     def test_instance(self):
         self.assertIsNotNone(self.mover)
-        self.assertTrue(self.mover.direction == 0)
+        self.assertTrue(self.mover.direction == 0.0)
+        self.assertTrue(self.mover.max_speed == 1.0)
+        self.assertTrue(self.mover.max_turn == 30.0)
+        self.assertTrue(self.mover.positive_turn == 0.5)
+        self.assertTrue(self.mover.curr_x == 0.0)
+        self.assertTrue(self.mover.curr_y == 0.0)
+        self.assertIsNotNone(self.mover.X)
+        self.assertIsNotNone(self.mover.Y)
 
     def test_move(self):
         x, y = self.mover.get_movement()
@@ -38,3 +45,11 @@ class TestAnimate(unittest.TestCase):
 
         self.mover.set_direction(30.0)
         self.assertEqual(self.mover.direction, 30.0)
+
+    def test_angle_turned(self):
+        turn = self.mover.angle_turned()
+        self.assertTrue(abs(turn) <= self.mover.max_turn)
+
+    def test_distance_moved(self):
+        dist_moved = self.mover.distance_moved(self.mover.max_speed)
+        self.assertTrue(dist_moved <= self.mover.max_speed)
