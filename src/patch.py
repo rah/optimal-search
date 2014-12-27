@@ -24,3 +24,6 @@ class Patch(Entity):
 
     def add_entity(self, entity=None):
         pass
+
+    def create_entities(self, n_entity=None):
+        pass
