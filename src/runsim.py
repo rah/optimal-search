@@ -4,7 +4,7 @@ from animate import Animate
 from searcher import Searcher
 
 
-def runsim(mover, steps):
+def runmover(mover, steps):
     '''
     run a simple simulation of movement
     '''
@@ -18,9 +18,9 @@ def runsim(mover, steps):
 
 
 def run_animate():
-    runsim(Animate(), 100)
+    runmover(Animate(), 100)
 
 
 def run_searcher():
     s = Searcher(90.0, 1.0, 180.0, 0.75, 0.0, 0.0)
-    runsim(s, 200)
+    runmover(s, 200)
