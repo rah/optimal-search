@@ -21,7 +21,7 @@ class Environment(object):
         self.patches = []
 
     def __str__(self):
-        return "<Environment length:%s width:%s patches:%s>" % (
+        return "<Environment length:%s width:%s number of patches:%s>" % (
             self.length, self.width, self.n_patches)
 
     def add_patch(self, patch=None):
