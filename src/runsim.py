@@ -3,6 +3,14 @@ import matplotlib.pyplot as plt
 from animate import Animate
 from searcher import Searcher
 
+def runsim():
+    # Create environment
+    # Add patches
+    # populate patches
+    # add searcher
+    # run and collect info
+    pass
+
 
 def runmover(mover, steps):
     '''
@@ -24,3 +32,5 @@ def run_animate():
 def run_searcher():
     s = Searcher(90.0, 1.0, 180.0, 0.75, 0.0, 0.0)
     runmover(s, 200)
+
+
