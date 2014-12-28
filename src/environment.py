@@ -36,11 +36,16 @@ class Environment(object):
             patch = Patch()
 
         # set the size of the patch
-        patch.radius = random() * (
-            self.width * Environment.MAX_PATCH_RADIUS_RATIO)
+        if patch.radius is None or patch.radius == 0.0:
+            patch.radius = random() * (
+                self.width * Environment.MAX_PATCH_RADIUS_RATIO)
 
         # set the location of the patch
-        patch.x_pos, patch.y_pos = self.patch_location(patch.radius)
+        if (
+                patch.x_pos is None or patch.y_pos is None or
+                patch.x_pos == 0.0 or patch.y_pos == 0.0
+        ):
+            patch.x_pos, patch.y_pos = self.patch_location(patch.radius)
 
         self.patches.append(patch)
 
