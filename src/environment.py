@@ -8,7 +8,7 @@ class Environment(object):
     '''
 
     # In calculating the radius of a patch this constraint can be used
-    MAX_PATCH_RADIUS_RATIO = 0.01
+    MAX_PATCH_RADIUS_RATIO = 0.1
 
     def __init__(
             self,
@@ -55,14 +55,22 @@ class Environment(object):
         x = self.length * random()
         y = self.width * random()
 
-        # check the radius to make sure the patch is within the environment
+        x, y = self.check_radius(x, y, radius)
+
+        return x, y
+
+    def check_radius(self, x, y, radius):
+        '''
+        Check the radius to make sure the patch is within the environment,
+        At this stage allow patches to overlap, so x and y are just adjusted
+        '''
         if (x - radius) <= 0.0:
             x = x + abs(x - radius)
 
         if (x + radius) >= self.length:
             x = x - (x + radius - self.length)
 
-        # TODO: y
+        # y location
         if (y - radius) <= self.width:
             y = y + abs(y - radius)
 
@@ -70,6 +78,18 @@ class Environment(object):
             y = y - (y + radius - self.width)
 
         return x, y
+
+    def check_in_bounds(pos, dist, lower_bound, upper_bound):
+        '''
+        check that the position is within a certain dist of the bounds
+        '''
+        if (pos - dist) <= lower_bound:
+            return True
+
+        if (pos + dist) >= upper_bound:
+            return True
+
+        return False
 
     def create_patches(self, n_patches=None):
         if n_patches is not None:
