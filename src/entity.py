@@ -1,6 +1,6 @@
 class Entity(object):
     '''
-    An entity has a position
+    An entity has a position and energy
     '''
 
     def __init__(
@@ -10,11 +10,3 @@ class Entity(object):
             y_pos=0.0):
         self.x_pos = x_pos
         self.y_pos = y_pos
-
-    def setx(self, x):
-        self.curr_x = x
-        self.X[len(self.X) - 1] = x
-
-    def sety(self, y):
-        self.curr_y = y
-        self.Y[len(self.Y) - 1] = y

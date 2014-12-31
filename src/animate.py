@@ -5,7 +5,7 @@ from entity import Entity
 
 class Animate(Entity):
     '''
-    A simple entity that can move around randomly
+    A simple entity that can move around
     '''
 
     def __init__(
@@ -33,6 +33,14 @@ class Animate(Entity):
         self.Y = []
         self.X.append(self.curr_x)
         self.Y.append(self.curr_y)
+
+    def setx(self, x):
+        self.curr_x = x
+        self.X[len(self.X) - 1] = x
+
+    def sety(self, y):
+        self.curr_y = y
+        self.Y[len(self.Y) - 1] = y
 
     def move(self):
         self.set_direction(self.angle_turned())
