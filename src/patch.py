@@ -17,27 +17,36 @@ class Patch(Entity):
             self,
             x_pos=0.0,
             y_pos=0.0,
+            parent=None,  # A patch generally has an environment for a parent
             radius=0.0):
 
-        Entity.__init__(self, x_pos, y_pos)
+        Entity.__init__(self, x_pos=x_pos, y_pos=y_pos, parent=parent)
 
         self.radius = radius
-        self.entities = []
 
     def __str__(self):
         return "<Patch x:%s y:%s r:%s n:%s>" % (
             self.x_pos, self.y_pos, self.radius, len(self.entities))
+
+    def radius(self, radius=None):
+        if radius is not None:
+            self.radius = radius
+
+        return self.radius
 
     def add_entity(self, entity=None):
         '''
         Add an entity to a random position in patch
         '''
         if entity is None:
-            entity = Entity()
+            entity = Entity(parent=self)
 
         entity.x_pos, entity.y_pos = self.rnd_patch_position()
 
-        self.entities.append(entity)
+        if self.children is None:
+            self.children = []
+
+        self.children.append(entity)
 
     def create_entities(self, n_entity):
         '''
@@ -60,4 +69,3 @@ class Patch(Entity):
         Get a random length of the radius of the patch
         '''
         return random() * self.radius
-

@@ -15,9 +15,10 @@ class Animate(Entity):
             max_turn=30.0,
             probability_positive_turn=0.5,
             x_pos=0.0,
-            y_pos=0.0):
+            y_pos=0.0,
+            parent=None):
 
-        Entity.__init__(self, x_pos, y_pos)
+        Entity.__init__(self, x_pos=x_pos, y_pos=y_pos, parent=parent)
 
         # basic attributes
         self.direction = start_direction
@@ -36,22 +37,21 @@ class Animate(Entity):
 
     def setx(self, x):
         self.curr_x = x
-        self.X[len(self.X) - 1] = x
+        self.X.append(x)
 
     def sety(self, y):
         self.curr_y = y
-        self.Y[len(self.Y) - 1] = y
+        self.Y.append(y)
 
     def move(self):
         self.set_direction(self.angle_turned())
         distance = self.distance_moved(self.max_speed)
 
-        x, y = self.relMove(self.direction, distance)
-        self.curr_x += x
-        self.curr_y += y
+        x_rel, y_rel = self.relMove(self.direction, distance)
+        x, y = self.set_bounds(self.curr_x + x_rel, self.curr_y + y_rel)
 
-        self.X.append(self.curr_x)
-        self.Y.append(self.curr_y)
+        self.setx(x)
+        self.sety(y)
 
     def relMove(self, direction, distance):
         '''

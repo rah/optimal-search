@@ -1,10 +1,13 @@
 from random import random
+from entity import Entity
 from patch import Patch
 
 
-class Environment(object):
+class Environment(Entity):
     '''
-    An environment contains a set of patches
+    An environment is an Entity that contains:
+    - a set of patches
+    - one searcher
     '''
 
     # In calculating the radius of a patch this constraint can be used
@@ -15,14 +18,13 @@ class Environment(object):
             length=100,
             width=100,
             n_patches=0):
-        self.length = length
-        self.width = width
-        self.n_patches = n_patches
-        self.patches = []
+
+        Entity.__init__(self, length=length, width=width)
+        self.create_patches(n_patches)
 
     def __str__(self):
         return "<Environment length:%s width:%s number of patches:%s>" % (
-            self.length, self.width, self.n_patches)
+            self.length, self.width, len(self.children))
 
     def add_patch(self, patch=None):
         '''
@@ -33,9 +35,13 @@ class Environment(object):
         '''
         if patch is None:
             # create a new empty patch
-            patch = Patch()
+            patch = Patch(parent=self)
+
+        if patch.parent is None:
+            patch.parent = self
 
         # set the size of the patch
+        # TODO: Allow for instance parent max ratio
         if patch.radius is None or patch.radius == 0.0:
             patch.radius = random() * (
                 self.width * Environment.MAX_PATCH_RADIUS_RATIO)
@@ -47,7 +53,10 @@ class Environment(object):
         ):
             patch.x_pos, patch.y_pos = self.patch_location(patch.radius)
 
-        self.patches.append(patch)
+        if self.children is None:
+            self.children = []
+
+        self.children.append(patch)
 
     def patch_location(self, radius):
         '''
@@ -96,9 +105,6 @@ class Environment(object):
 
         return False
 
-    def create_patches(self, n_patches=None):
-        if n_patches is not None:
-            self.n_patches = n_patches
-
-        for i in range(self.n_patches):
+    def create_patches(self, n_patches=0):
+        for i in range(n_patches):
             self.add_patch()
