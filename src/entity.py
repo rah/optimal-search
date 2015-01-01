@@ -15,8 +15,8 @@ class Entity(object):
             y_pos=0.0,
             length=0.0,
             width=0.0,
-            parent=None,
-            children=None):
+            parent=[],
+            children=[]):
         self.energy = energy
         self.x_pos = x_pos
         self.y_pos = y_pos
@@ -25,23 +25,26 @@ class Entity(object):
         self.parent = parent
         self.children = children
 
-    def energy(self):
-        '''
-        returns the sum of energy in all children
-        overwrites any existing value of energy
-        '''
-        self.energy = 0.0
-        for child in self.children:
-            self.energy += child.energy()
+    def add(self, entity):
+        self.children.append(entity)
 
-        return self.energy
+    def remove(self, entity):
+        self.children.remove(entity)
+
+    def total_energy(self):
+        '''
+        returns the sum of all energy
+        '''
+        total_energy = self.energy
+        for child in self.children:
+            total_energy += child.energy
+
+        return total_energy
 
     def set_bounds(self, x, y):
         '''
-        Ensure that x, y are within the bounds of the parent.
-        We assume that the parent has a valid width and length.
-
-        Reset the bounds so that a torus is formed
+        Ensure that x, y are within the bounds of this entity.
+        Reset x,y so that a torus is formed
         '''
         if x < 0.0:
             x = self.length
