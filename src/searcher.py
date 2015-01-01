@@ -44,7 +44,6 @@ class Searcher(Animate):
         '''
         if entity is not None:
             if random.random() > 0.5:
-                print ">> Entity captured"
                 return entity
 
         return None
@@ -59,7 +58,6 @@ class Searcher(Animate):
                         self.curr_y - entity.y_pos
                 ) <= self.detection_range:
                     entity_found = entity
-                    print ">> Entity found"
                     break
 
         return entity_found
@@ -72,7 +70,6 @@ class Searcher(Animate):
                     self.curr_y - patch.y_pos
             ) <= patch.radius:
                 patch_found = patch
-                print ">> Patch found"
                 break
 
         return patch_found
