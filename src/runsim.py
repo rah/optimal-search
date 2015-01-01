@@ -1,36 +1,40 @@
 #! /usr/env/python
-import matplotlib.pyplot as plt
-from animate import Animate
+from environment import Environment
 from searcher import Searcher
+import graphsim as gs
 
-def runsim():
-    # Create environment
-    # Add patches
-    # populate patches
-    # add searcher
-    # run and collect info
-    pass
+MAX_MOVES = 50000
 
 
-def runmover(mover, steps):
-    '''
-    run a simple simulation of movement
-    '''
-
-    for i in range(steps):
-        mover.move()
-        # print mover.direction
-
-    x, y = mover.get_movement()
-    plt.plot(x, y)
+def remove_entity(entity):
+    patch = entity.parent
+    patch.children.remove(entity)
 
 
-def run_animate():
-    runmover(Animate(), 100)
+# Set up the environment
+env = Environment(1000, 1000, 20)
+for patch in env.children:
+    patch.create_entities(10)
 
+s = Searcher(x_pos=(env.length / 2.0),
+             y_pos=(env.width / 2.0),
+             parent=env)
 
-def run_searcher():
-    s = Searcher(90.0, 1.0, 180.0, 0.75, 0.0, 0.0)
-    runmover(s, 200)
+win = gs.setup_graphics_window("test", 800, 800, 1000, 1000)
+gs.draw_environment(env, win)
 
+for i in range(MAX_MOVES):
+    s.move()
 
+    gs.draw_searcher_move(s, i, win)
+
+    entity = s.detect()
+    captured = s.capture(entity)
+    if captured is not None:
+        gs.undraw_entity(captured, win)
+        remove_entity(captured)
+
+    if gs.breakout(win):
+        break
+
+gs.closewin(win)
