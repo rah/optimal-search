@@ -15,7 +15,7 @@ class Entity(object):
             y_pos=0.0,
             length=0.0,
             width=0.0,
-            parent=[],
+            parent=None,
             children=[]):
         self.energy = energy
         self.x_pos = x_pos
@@ -25,10 +25,10 @@ class Entity(object):
         self.parent = parent
         self.children = children
 
-    def add(self, entity):
+    def add_child(self, entity):
         self.children.append(entity)
 
-    def remove(self, entity):
+    def remove_child(self, entity):
         self.children.remove(entity)
 
     def total_energy(self):
