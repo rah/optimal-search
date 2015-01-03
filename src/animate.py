@@ -48,7 +48,9 @@ class Animate(Entity):
         distance = self.distance_moved(self.max_speed)
 
         x_rel, y_rel = self.relMove(self.direction, distance)
-        x, y = self.parent.set_bounds(self.curr_x + x_rel, self.curr_y + y_rel)
+        x, y = self.curr_x + x_rel, self.curr_y + y_rel
+        if self.parent is not None:
+            x, y = self.parent.set_bounds(x, y)
 
         self.setx(x)
         self.sety(y)
