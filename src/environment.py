@@ -53,9 +53,6 @@ class Environment(Entity):
         ):
             patch.x_pos, patch.y_pos = self.patch_location(patch.radius)
 
-        if self.children is None:
-            self.children = []
-
         self.children.append(patch)
 
     def patch_location(self, radius):
