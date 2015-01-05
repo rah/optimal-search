@@ -12,7 +12,6 @@ class Searcher(Animate):
     SPEED_DETECTION_RATIO = 10.0
 
     def __init__(self,
-                 start_direction=0.0,
                  max_speed=1.0,
                  max_turn=30.0,
                  probability_positive_turn=0.5,
@@ -22,7 +21,6 @@ class Searcher(Animate):
         # super(Searcher, self).__init__(
         Animate.__init__(
             self,
-            start_direction,
             max_speed,
             max_turn,
             probability_positive_turn,
