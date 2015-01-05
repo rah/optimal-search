@@ -11,21 +11,23 @@ class TestAnimate(unittest.TestCase):
         self.assertIsNotNone(self.mover)
         self.assertTrue(self.mover.direction == 0.0)
         self.assertTrue(self.mover.max_speed == 1.0)
-        self.assertTrue(self.mover.max_turn == 30.0)
+        self.assertTrue(self.mover.average_turn == 20.0)
+        self.assertTrue(self.mover.turn_std_dev == 5.0)
         self.assertTrue(self.mover.positive_turn == 0.5)
         self.assertTrue(self.mover.curr_x == 0.0)
         self.assertTrue(self.mover.curr_y == 0.0)
         self.assertIsNotNone(self.mover.X)
         self.assertIsNotNone(self.mover.Y)
+        self.assertIsNotNone(self.mover.A)
 
     def test_move(self):
-        x, y = self.mover.get_movement()
+        x, y, a = self.mover.get_movement()
         xlen1 = len(x)
         self.assertTrue(xlen1 > 0)
 
         self.mover.move()
 
-        x, y = self.mover.get_movement()
+        x, y, a = self.mover.get_movement()
         xlen2 = len(x)
         self.assertTrue(xlen2 > xlen1)
 
@@ -48,8 +50,19 @@ class TestAnimate(unittest.TestCase):
 
     def test_angle_turned(self):
         turn = self.mover.angle_turned()
-        self.assertTrue(abs(turn) <= self.mover.max_turn)
+        self.assertTrue(
+            abs(turn) <= self.mover.average_turn * (3 * self.mover.turn_std_dev)
+            and
+            abs(turn) <= self.mover.average_turn * (3 * self.mover.turn_std_dev)
+        )
 
     def test_distance_moved(self):
         dist_moved = self.mover.distance_moved(self.mover.max_speed)
         self.assertTrue(dist_moved <= self.mover.max_speed)
+
+
+
+
+
+
+
