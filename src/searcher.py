@@ -13,7 +13,8 @@ class Searcher(Animate):
 
     def __init__(self,
                  max_speed=1.0,
-                 max_turn=30.0,
+                 average_turn=20.0,
+                 turn_std_dev=5.0,
                  probability_positive_turn=0.5,
                  x_pos=0.0,
                  y_pos=0.0,
@@ -22,7 +23,8 @@ class Searcher(Animate):
         Animate.__init__(
             self,
             max_speed,
-            max_turn,
+            average_turn,
+            turn_std_dev,
             probability_positive_turn,
             x_pos,
             y_pos,

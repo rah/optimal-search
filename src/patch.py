@@ -11,6 +11,8 @@ class Patch(Entity):
     '''
     A patch contains a set of entities and is a type of entity in that
     it has a position and it's energy is the sum of all entities it contains.
+
+    A patch is circular and therefore has a radius. 
     '''
 
     def __init__(
@@ -18,9 +20,12 @@ class Patch(Entity):
             x_pos=0.0,
             y_pos=0.0,
             parent=None,  # A patch generally has an environment for a parent
+            children=None,
             radius=0.0):
 
-        Entity.__init__(self, x_pos=x_pos, y_pos=y_pos, parent=parent)
+        Entity.__init__(self, x_pos=x_pos, y_pos=y_pos,
+                        length=radius, width=radius,
+                        parent=parent, children=children)
 
         self.radius = radius
 
@@ -41,12 +46,12 @@ class Patch(Entity):
         if entity is None:
             entity = Entity(parent=self)
 
-        entity.x_pos, entity.y_pos = self.rnd_patch_position()
+        if entity.x_pos == 0.0 and entity.y_pos == 0.0:
+            entity.x_pos, entity.y_pos = self.rnd_patch_position()
 
-        if self.children is None:
-            self.children = []
+        self.add_child(entity)
 
-        self.children.append(entity)
+        return entity
 
     def create_entities(self, n_entity):
         '''

@@ -16,14 +16,17 @@ class Entity(object):
             length=0.0,
             width=0.0,
             parent=None,
-            children=[]):
+            children=None):
         self.energy = energy
         self.x_pos = x_pos
         self.y_pos = y_pos
         self.length = length
         self.width = width
         self.parent = parent
-        self.children = children
+        if children is None:
+            self.children = []
+        else:
+            self.children = children
 
     def add_child(self, entity):
         self.children.append(entity)
