@@ -1,0 +1,17 @@
+* Overview
+
+* Simulation
+
+** Experiment 1
+How does the rate of encounter for a searcher change as the average angle turned by the searcher varies. Let angle turned be a normal distribution with set SD. As items are encountered they are removed. The distribution of items ranges from random to aggregated.
+
+*** Parameters
+
+ 
+* Reference
+** Green, R.F.
+[[http://www.d.umn.edu/~rgreen/][List of Greens papers]]
+[[http://www.d.umn.edu/~rgreen/Summary.pdf][Greens summary of his Optimal Foraging papers]]
+
+** Journals
+[[http://www.movementecologyjournal.com/][Movement Ecology]]
