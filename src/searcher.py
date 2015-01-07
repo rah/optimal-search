@@ -29,9 +29,16 @@ class Searcher(Animate):
             x_pos,
             y_pos,
             parent=parent)
+        self.captured = []
         self.giving_up_time = 0
         self.time_since_encounter = Searcher.MAX_TIME_SINCE_ENC
+        self.time_since_capture = Searcher.MAX_TIME_SINCE_ENC
         self.detection_range = max_speed * Searcher.SPEED_DETECTION_RATIO
+
+    def move(self):
+        self.time_since_capture += 1
+        self.time_since_encounter += 1
+        super.move()
 
     def detect(self):
         return self.is_entity_in_detection_range()
@@ -44,6 +51,8 @@ class Searcher(Animate):
         '''
         if entity is not None:
             if random.random() > 0.5:
+                self.time_since_capture = 0
+                self.captured.append(entity)
                 return entity
 
         return None
@@ -58,6 +67,7 @@ class Searcher(Animate):
                         self.curr_y - entity.y_pos
                 ) <= self.detection_range:
                     entity_found = entity
+                    self.time_since_encounter = 0
                     break
 
         return entity_found
