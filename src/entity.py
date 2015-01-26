@@ -34,6 +34,10 @@ class Entity(object):
     def remove_child(self, entity):
         self.children.remove(entity)
 
+    def remove_self(self):
+        if self.parent is not None:
+            self.parent.children.remove(self)
+
     def total_energy(self):
         '''
         returns the sum of all energy
