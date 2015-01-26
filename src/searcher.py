@@ -38,26 +38,36 @@ class Searcher(Animate):
     def move(self):
         self.time_since_capture += 1
         self.time_since_encounter += 1
-        super.move()
+        super(Searcher, self).move()
 
     def detect(self):
-        return self.is_entity_in_detection_range()
+        detected = False
+        if self.is_entity_in_detection_range():
+            self.time_since_encounter = 0
+            detected = True
+
+        return detected
 
     def capture(self, entity):
         '''
         Determines whether the searcher captures the entity or not
 
-        Initial implementation just a random decision
+        TODO: Initial implementation just a random decision 50/50
+              Need to work out what this should be
         '''
         if entity is not None:
             if random.random() > 0.5:
                 self.time_since_capture = 0
                 self.captured.append(entity)
-                return entity
-
-        return None
+                entity.remove_self()  # remove from patch
 
     def is_entity_in_detection_range(self):
+        '''
+        Determines if an entity is within detection range.
+
+        To avoid having to check every entity, only check for entities within a
+        patch if within a patch.
+        '''
         entity_found = None
         in_patch = self.is_in_patch()
         if in_patch is not None:
@@ -67,7 +77,6 @@ class Searcher(Animate):
                         self.curr_y - entity.y_pos
                 ) <= self.detection_range:
                     entity_found = entity
-                    self.time_since_encounter = 0
                     break
 
         return entity_found
@@ -83,3 +92,4 @@ class Searcher(Animate):
                 break
 
         return patch_found
+
