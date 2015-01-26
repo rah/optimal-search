@@ -32,7 +32,7 @@ for i in range(MAX_MOVES):
     captured = s.capture(entity)
     if captured is not None:
         gs.undraw_entity(captured, win)
-        remove_entity(captured)
+        captured.remove_self()
 
     if gs.breakout(win):
         break
