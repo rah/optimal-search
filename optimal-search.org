@@ -1,28 +1,26 @@
 * Overview
 
 * Simulation
-
 ** Experiment 1
+A very simple start to the simulation. Using the default values for the searcher:
+ - average turn 20
+ - std dev of turn 5
+
+Change the number of entities per patch whilst keeping the number of patches constant.
+Increase the values to see if there is a value that give an optimum number of entities caught.   
+
+** Experiment ??
 How does the rate of encounter for a searcher change as the average angle turned by the searcher varies. Let angle turned be a normal distribution with set SD. As items are encountered they are removed. The distribution of items ranges from random to aggregated.
 
 Let mean angle turned start at 10 and increment at 10 steps, ie 20, 30, 40 until 90.
 
 Let the SD be 0.1 of the angle turned?? So the greater the mean turn, the higher the SD and more variability in the turns. Does this make sense, should the SD be standard across all. So ther are two experiments:
-one with SD a reatio of the mean turn, the other a set SD.
+one with SD a ratio of the mean turn, the other a set SD.
 
-*** Experiment 1a
-SD is 0.1 of mean angle turned
-
-***
-SD is set (to what???)
-
-*** Parameters
-
- 
 * Reference
 ** Green, R.F.
-[[http://www.d.umn.edu/~rgreen/][List of Greens papers]]
-[[http://www.d.umn.edu/~rgreen/Summary.pdf][Greens summary of his Optimal Foraging papers]]
+   [[http://www.d.umn.edu/~rgreen/][List of Greens papers]]
+   [[http://www.d.umn.edu/~rgreen/Summary.pdf][Greens summary of his Optimal Foraging papers]]
 
 ** Journals
-[[http://www.movementecologyjournal.com/][Movement Ecology]]
+   [http://www.movementecologyjournal.com/]
