@@ -41,12 +41,11 @@ class Searcher(Animate):
         super(Searcher, self).move()
 
     def detect(self):
-        detected = False
-        if self.is_entity_in_detection_range():
+        entity_detected = self.is_entity_in_detection_range()
+        if entity_detected is not None:
             self.time_since_encounter = 0
-            detected = True
 
-        return detected
+        return entity_detected
 
     def capture(self, entity):
         '''
