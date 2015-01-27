@@ -2,23 +2,33 @@
 """
 Experiment 1: Examine the impact of changing the number of entities
               on the default parameters of the searcher.
+
+              The number
 """
 from environment import Environment
 from searcher import Searcher
 
+import random
+from scipy import stats
+import numpy as np
+import pylab
+
 ENV_SIZE = 1000
 N_PATCHES = 20
-N_ENTITIES_PER_PATCH = 10
-
-MAX_MOVES = 50000
-
-N_TRIALS = 20
+N_ENTITIES_PER_PATCH = [5, 10, 15, 20, 25, 30, 40]
+N_TRIALS = 1000
+MAX_MOVES = 5000
+MAX_ENTITIES_PER_PATCH = 50
+MIN_ENTITIES_PER_PATCH = 5
+entity_results = []
+captured_results = []
 
 for trail in range(N_TRIALS):
     # Set up the environment
     env = Environment(ENV_SIZE, ENV_SIZE, N_PATCHES)
+    entities = random.randint(MIN_ENTITIES_PER_PATCH, MAX_ENTITIES_PER_PATCH)
     for patch in env.children:
-        patch.create_entities(N_ENTITIES_PER_PATCH)
+        patch.create_entities(entities)
 
     s = Searcher(x_pos=(env.length / 2.0),
                  y_pos=(env.width / 2.0),
@@ -29,4 +39,24 @@ for trail in range(N_TRIALS):
         entity = s.detect()
         s.capture(entity)
 
-    print("Total entities captured = ", len(s.captured))
+    entity_results.append(entities)
+    captured_results.append(len(s.captured))
+
+# for k in range(len(entity_results)):
+#     print(entity_results[k], captured_results[k])
+
+x = np.array(entity_results)
+y = np.array(captured_results)
+
+slope, intercept, r_value, p_value, slope_std_error = stats.linregress(x, y)
+
+# Calculate some additional outputs
+predict_y = intercept + slope * x
+pred_error = y - predict_y
+degrees_of_freedom = len(x) - 2
+residual_std_error = np.sqrt(np.sum(pred_error**2) / degrees_of_freedom)
+
+# Plotting
+pylab.plot(x, y, 'o')
+pylab.plot(x, predict_y, 'k-')
+pylab.show()
