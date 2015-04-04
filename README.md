@@ -17,3 +17,4 @@ The data directory contains:
 - ATTACK: Attack behaviour of _P. sordidus_
 - ANALYSIS: Conversion of tracks into excel spreadsheets with some initial graphs and analysis
 
+View the analysis here http://nbviewer.ipython.org/github/rah/optimal-search/tree/master/ipython/
