@@ -4,15 +4,12 @@ Provides a convenient wrapper to run a set of simulation.
 Parameters for the simulations are contained in a properties file.
 """
 from environment import Environment
-from searcher import Searcher
+from predator import Predator
 
 import random
 from scipy import stats
 import numpy as np
 import pylab
-
-entity_results = []
-captured_results = []
 
 
 def default_params():
@@ -32,15 +29,19 @@ def config_params(config_file):
 
 
 def runsim(config_file=None):
+
+    entity_results = []
+    captured_results = []
+
     p = {}
 
     # get the paramters for the simulation
-    if config_file is None:
+y    if config_file is None:
         p = default_params()
     else:
         p = config_params(config_file)
 
-    for trail in range(p['n_trials']):
+    for trial in range(p['n_trials']):
         # Set up the environment
         env = Environment(p['env_size'], p['env_size'], p['n_patches'])
         entities = random.randint(p['min_entities_per_patch'],
@@ -48,21 +49,23 @@ def runsim(config_file=None):
         for patch in env.children:
             patch.create_entities(entities)
 
-        s = Searcher(x_pos=(env.length / 2.0),
-                     y_pos=(env.width / 2.0),
-                     parent=env)
+        pred = Predator()
+        pred.xpos = env.length / 2.0
+        pred.y_pos = env.width / 2.0
+        pred.parent = env
 
         for i in range(p['max_moves']):
-            s.move()
-            entity = s.detect()
-            s.capture(entity)
+            pred.move()
+            entity = pred.detect()
+            pred.capture(entity)
 
         entity_results.append(entities)
-        captured_results.append(len(s.captured))
+        captured_results.append(len(pred.captured))
 
-        # for k in range(len(entity_results)):
-        #     print(entity_results[k], captured_results[k])
+    return entity_results, captured_results
 
+
+def analyse_results(entity_results, captured_results):
     x = np.array(entity_results)
     y = np.array(captured_results)
 
@@ -83,8 +86,3 @@ def runsim(config_file=None):
     pylab.plot(x, y, 'o')
     pylab.plot(x, predict_y, 'k-')
     pylab.show()
-
-
-
-
-

@@ -1,9 +1,10 @@
 #! /usr/env/python
 """
 Experiment 1: Examine the impact of changing the number of entities
-              on the default parameters of the searcher.
+on the default parameters of the searcher.
 
-              The number
+The number of entities ranges from a min value to a max value,
+chosen randomly.
 """
 from environment import Environment
 from searcher import Searcher
@@ -15,8 +16,7 @@ import pylab
 
 ENV_SIZE = 1000
 N_PATCHES = 20
-N_ENTITIES_PER_PATCH = [5, 10, 15, 20, 25, 30, 40]
-N_TRIALS = 1000
+N_TRIALS = 100
 MAX_MOVES = 5000
 MAX_ENTITIES_PER_PATCH = 50
 MIN_ENTITIES_PER_PATCH = 5
@@ -49,6 +49,9 @@ x = np.array(entity_results)
 y = np.array(captured_results)
 
 slope, intercept, r_value, p_value, slope_std_error = stats.linregress(x, y)
+print "Slope, intercept:", slope, intercept
+print "R-squared:", r_value**2
+
 
 # Calculate some additional outputs
 predict_y = intercept + slope * x

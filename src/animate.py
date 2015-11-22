@@ -31,9 +31,9 @@ class Animate(Entity):
         self.curr_y = y_pos
 
         # Memory of movement
-        self.X = []
-        self.Y = []
-        self.A = []
+        self.X = []  # x position
+        self.Y = []  # y position
+        self.A = []  # angle turned
         self.X.append(self.curr_x)
         self.Y.append(self.curr_y)
         self.A.append(0.0)
