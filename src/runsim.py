@@ -36,7 +36,7 @@ def runsim(config_file=None):
     p = {}
 
     # get the paramters for the simulation
-y    if config_file is None:
+    if config_file is None:
         p = default_params()
     else:
         p = config_params(config_file)
