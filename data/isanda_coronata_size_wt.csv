@@ -1,4 +1,4 @@
-Size(mm), WtTotal, WtPaper, WtShellPaper, WtTissue, WtShell, TissueToShell
+Size(mm),WtTotal,WtPaper,WtShellPaper,WtTissue,WtShell,TissueToShell
 4.3,      23.17,   3.29,    5.26,         1.97,	    21.2,     0.09
 4.6,      25.73,   3.16,    6.34,         3.18,     22.55,    0.14
 4.5,      22.14,   3.34,    6.41,         3.07,     19.07,    0.16
