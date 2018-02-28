@@ -1,5 +1,4 @@
 * Overview
-
 * Simulation
 ** Experiment 1
 A very simple start to the simulation. Using the default values for the searcher:
@@ -18,9 +17,14 @@ Let the SD be 0.1 of the angle turned?? So the greater the mean turn, the higher
 one with SD a ratio of the mean turn, the other a set SD.
 
 * Reference
+** Kitchener
+Kitchener Jennifer, A. The Evolution of Predator Prey Behaviour: Naticid Gastropos and Their Molluscan Prey in Evolution of Animal Behaviour: Paleontological and Field Approaches eds Nitecki, Matthew. H., Kitchell, Jennifer, A
+
 ** Green, R.F.
    [[http://www.d.umn.edu/~rgreen/][List of Greens papers]]
    [[http://www.d.umn.edu/~rgreen/Summary.pdf][Greens summary of his Optimal Foraging papers]]
 
 ** Journals
    [http://www.movementecologyjournal.com/]
+
+
