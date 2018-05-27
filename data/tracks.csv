@@ -1,4 +1,4 @@
-id,date,time_start,time_finish,species,prey,location,pred_size,prey_captured,prey_size,sim_enc,sand,ripple,water,slope,temp,temp_time,low_tide,tide_ht,A+,A,A?,P,PC,S,B,PIT,TF,FOT,OTE,Comment
+id,date,time_start,time_finish,species,prey,location,pred_size,prey_captured,prey_size,sim_enc,sand,ripple,water,slope,temp,temp_time,low_tide,tide_ht,A+,A,A?,P,PC,S,B,PIT,TF,FOT,OTE,Events
 1,19-10-84,10:41,10:56,2,2,T6,,2,5,,5,0,4,3,,,,,,,,,,,,,,,,
 2,19-10-84,11:06,11:20,2,2,T6,,1,5,,5,0,4,3,,,,,,,,,,,,,,,,
 3,19-10=84,10:20,10:29,2,2,T6,,,,,5,0,4,3,,,,,,,,,,,,,,,,
@@ -24,19 +24,19 @@ id,date,time_start,time_finish,species,prey,location,pred_size,prey_captured,pre
 23,07-11-84,09:42,09:54,1,1,L1,,,,,,,,,,,,,,,,,1,,1,,,,,"Not worth analysis, prey assessment time 60 seconds"
 24,07-11-84,13:39,14:35,1,1,L1,,,,,,,,,,,,,,,,,1,,1,,1,,,"Water drained top of sand exposed at 1230, flow resumed at 1430. Initial track very convoluted but no obvious sign of attack although stopped on several occasions."
 25,07-11-84,13:17,13:42,1,1,L1,,,,,,,,,,,,,3,,,,1,,1,,,,,Same conditions as 24
-25B,09-11-84,15:32,15:46,1,1,L1,,,,,,,,,,,,,,,,,,,,,,,,
-26,09-11-84,15:15,15:20,1,1,L1,,,,,,,,,,,,,,,,,,,,,,,,
-27,10-11-84,14:53,15:15,1,1,L1,,,,,,,,,,,,,,,,,,,,,,,,
-28,10-11-84,15:16,15:20,1,1,L1,,,,,,,,,,,,,,,,,,,,,,,,
-29,11-11-84,10:24,10:39,1,1,L1,,,,,,,,,,,,,,,,,,,,,,,,
-30,12-11-84,12:16,17:15,1,0,L1,,,,,,,,,,,,,,,,,,,,,,,,
-31,12-11-84,17:20,17:34,1,0,L1,,,,,,,,,,,,,,,,,,,,,,,,
-32,12-11-84,17:49,18:10,1,0,L1,,,,,,,,,,,,,,,,,,,,,,,,
-33,12-11-84,12:19,14:00,1,0,L1,,,,,,,,,,,,,,,,,,,,,,,,
-34,13-11-84,09:50,11:11,1,0,L1,,,,,,,,,,,,,,,,,,,,,,,,
-35,13-11-84,10:55,11:13,1,0,L1,,,,,,,,,,,,,,,,,,,,,,,,
-36,13-11-84,16:16,16:29,1,0,L1,,,,,,,,,,,,,,,,,,,,,,,,
-37,19-11-84,09:52,10:47,1,0,L1,,,,,,,,,,,,,,,,,,,,,,,,
+25B,09-11-84,15:32,15:46,1,1,L1,,,,,,,,,,,,,2,1,,1,1,,1,1,,,1,"1-4 uds, 4 [A,} no reaction, 4-27 uds"
+26,09-11-84,15:15,15:20,1,1,L1,,,,,,,,,,,,,,,,,,,1,,,,,
+27,10-11-84,14:53,15:15,1,1,L1,,,,,,,,,,,,,2,1,,,1,,1,,,,,
+28,10-11-84,15:16,15:20,1,1,L1,,,,,,,,,,,,,1,,,,1,,1,1,,,,
+29,11-11-84,10:24,10:39,1,1,L1,,,,,,,,,,,,,1,,,,1,,1,3,,,,"water drained 0945, light surface water remaining in area of search PIT on surfacing, PC diff prey, PIT older one may just have been trailed in mucus"
+30,12-11-84,12:16,17:15,1,0,L1,,,,,,,,,,,,,,,,,,,,,,,,"no prey in area, trail not observed, track drawn, occurred between 1600-1715"
+31,12-11-84,17:20,17:34,1,0,L1,,,,,,,,,,,,,,,1,,,,,,,,2,"no prey in area, possible detection of P.conicus buried"
+32,12-11-84,17:49,18:10,1,0,L1,,,,,,,,,,,,,,,,,,,,,,,5,"no prey in area, continuation of 31"
+33,12-11-84,12:19,14:00,1,0,L1,,,,,,,,,,,,,,,1,,,,,,,,,"no prey in area, entire track whilst pred buried (D4) points no recorded at 15 sec intervals"
+34,13-11-84,09:50,11:11,1,0,L1,,,,,,,,,,,,,,,2,,,,,,,,,"no prey in area, encounter with other buried Polinices"
+35,13-11-84,10:55,11:13,1,0,L1,,,,,,,,,,,,,,,,,,,,,,,1,"no prey in area, possible encounter with buried Polinices"
+36,13-11-84,16:16,16:29,1,0,L1,,,,,,,,,,,,,,,,,,,,,,,,"no prey in area, no events"
+37,19-11-84,09:52,10:47,1,0,L1,,,,,,,,,,,,,,,,,,,,,,,,"no prey in area, starved for seven days, water from prey holding tank dropped above buried snail, Initially animal buried, but shortly after introducing prey water pred surfaced and commenced tight search which eventually took on form of spiral. One apparent attack and prob ??"
 38,22-12-84,13:25,14:08,3,3,M2,,,,,,,,,,,,,,,,,,,,,,,,
 39,23-12-84,12:52,13:10,3,3,M2,,,,,,,,,,,,,,,,,,,,,,,,
 40,23-12-84,13:10,13:15,3,3,M2,,,,,,,,,,,,,,,,,,,,,,,,
