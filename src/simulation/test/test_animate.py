@@ -59,10 +59,3 @@ class TestAnimate(unittest.TestCase):
     def test_distance_moved(self):
         dist_moved = self.mover.distance_moved(self.mover.max_speed)
         self.assertTrue(dist_moved <= self.mover.max_speed)
-
-
-
-
-
-
-

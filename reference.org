@@ -1,0 +1,6 @@
+* Bell, W.J. 1990 Searching Behaviour. The Ecology of finding resources
+When searching for a resource patch an animal attempts to localise an assemblage of resources, 
+whereas when searching within a patch it avoids leaving the assemblage until it becomes unprofitable to remain.
+
+When an animal has no information about where resources are located it must attempt to move in such a way so as to optimize its
+chances of locating resources, but also to reduce the chances of covering areas already searched.
