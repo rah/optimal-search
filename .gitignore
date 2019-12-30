@@ -2,6 +2,9 @@
 __pycache__/
 *.py[cod]
 
+# vscode
+.vscode/
+
 # C extensions
 *.so
 
@@ -55,6 +58,3 @@ target/
 
 # ipython
 .ipynb_checkpoints/
-
-
-

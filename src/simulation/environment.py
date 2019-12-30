@@ -1,6 +1,7 @@
 from random import random
-from entity import Entity
-from patch import Patch
+
+from src.simulation.entity import Entity
+from src.simulation.patch import Patch
 
 
 class Environment(Entity):
@@ -90,7 +91,7 @@ class Environment(Entity):
 
         return x, y
 
-    def check_in_bounds(pos, dist, lower_bound, upper_bound):
+    def check_in_bounds(self, pos, dist, lower_bound, upper_bound):
         '''
         check that the position is within a certain dist of the bounds
         '''

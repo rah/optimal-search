@@ -1,6 +1,7 @@
 from random import random
 from math import cos, sin, radians
-from entity import Entity
+
+from src.simulation.entity import Entity
 
 
 def rnd_direction():
@@ -12,7 +13,7 @@ class Patch(Entity):
     A patch contains a set of entities and is a type of entity in that
     it has a position and it's energy is the sum of all entities it contains.
 
-    A patch is circular and therefore has a radius. 
+    A patch is circular and therefore has a radius.
     '''
 
     def __init__(

@@ -3,8 +3,8 @@
 Provides a convenient wrapper to run a set of simulation.
 Parameters for the simulations are contained in a properties file.
 """
-from environment import Environment
-from predator import Predator
+from src.simulation.environment import Environment
+from src.simulation.predator import Predator
 
 import random
 from scipy import stats

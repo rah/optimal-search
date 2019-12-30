@@ -1,14 +1,15 @@
 import sys
 import random
 from math import hypot
-from animate import Animate
+
+from src.simulation.animate import Animate
 
 
 class Searcher(Animate):
     '''
     Simple searcher that has a concept of time and encounters
     '''
-    MAX_TIME_SINCE_ENC = sys.maxint
+    MAX_TIME_SINCE_ENC = sys.maxsize
     SPEED_DETECTION_RATIO = 10.0
 
     def __init__(self,

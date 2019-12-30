@@ -6,8 +6,8 @@ on the default parameters of the searcher.
 The number of entities ranges from a min value to a max value,
 chosen randomly.
 """
-from environment import Environment
-from searcher import Searcher
+from src.simulation.environment import Environment
+from src.simulation.predator import Predator
 
 import random
 from scipy import stats
@@ -23,21 +23,22 @@ MIN_ENTITIES_PER_PATCH = 5
 entity_results = []
 captured_results = []
 
-for trail in range(N_TRIALS):
+for trial in range(N_TRIALS):
     # Set up the environment
     env = Environment(ENV_SIZE, ENV_SIZE, N_PATCHES)
     entities = random.randint(MIN_ENTITIES_PER_PATCH, MAX_ENTITIES_PER_PATCH)
     for patch in env.children:
         patch.create_entities(entities)
 
-    s = Searcher(x_pos=(env.length / 2.0),
-                 y_pos=(env.width / 2.0),
-                 parent=env)
+    p = Predator()
+    p.x_pos = env.length / 2.0
+    p.y_pos=env.width / 2.0
+    p.parent=env
 
     for i in range(MAX_MOVES):
-        s.move()
+        p.move()
         entity = s.detect()
-        s.capture(entity)
+        p.capture(entity)
 
     entity_results.append(entities)
     captured_results.append(len(s.captured))
@@ -49,8 +50,8 @@ x = np.array(entity_results)
 y = np.array(captured_results)
 
 slope, intercept, r_value, p_value, slope_std_error = stats.linregress(x, y)
-print "Slope, intercept:", slope, intercept
-print "R-squared:", r_value**2
+print("Slope, intercept:", slope, intercept)
+print("R-squared:", r_value**2)
 
 
 # Calculate some additional outputs
