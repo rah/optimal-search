@@ -3,13 +3,14 @@
 Provides a convenient wrapper to run a set of simulation.
 Parameters for the simulations are contained in a properties file.
 """
-from src.simulation.environment import Environment
-from src.simulation.predator import Predator
-
+import configparser
 import random
 from scipy import stats
 import numpy as np
 import pylab
+
+from src.simulation.environment import Environment
+from src.simulation.predator import Predator
 
 
 def default_params():
@@ -24,22 +25,16 @@ def default_params():
     return params
 
 
-def config_params(config_file):
-    return {}
-
-
 def runsim(config_file=None):
 
     entity_results = []
     captured_results = []
 
-    p = {}
-
     # get the paramters for the simulation
     if config_file is None:
         p = default_params()
     else:
-        p = config_params(config_file)
+        p = configparser.ConfigParser().read(config_file)
 
     for trial in range(p['n_trials']):
         # Set up the environment
@@ -72,15 +67,15 @@ def analyse_results(entity_results, captured_results):
     slope, intercept, r_value, p_value, \
         slope_std_error = stats.linregress(x, y)
 
-    print "Slope, intercept:", slope, intercept
-    print "R-squared:", r_value**2
+    print("Slope, intercept:", slope, intercept)
+    print("R-squared:", r_value**2)
 
     # Calculate some additional outputs
     predict_y = intercept + slope * x
     pred_error = y - predict_y
     degrees_of_freedom = len(x) - 2
     residual_std_error = np.sqrt(np.sum(pred_error**2) / degrees_of_freedom)
-    print "Residual Std Error = ", residual_std_error
+    print("Residual Std Error = ", residual_std_error)
 
     # Plotting
     pylab.plot(x, y, 'o')
