@@ -14,14 +14,11 @@ class Environment(Entity):
     # In calculating the radius of a patch this constraint can be used
     MAX_PATCH_RADIUS_RATIO = 0.1
 
-    def __init__(
-            self,
-            length=100,
-            width=100,
-            n_patches=0):
-
-        Entity.__init__(self, length=length, width=width)
-        self.create_patches(n_patches)
+    def __init__(self, p):
+        Entity.__init__(self, p)
+        self.length = p.get('ENVIRONMENT').get('length')
+        self.width = p.get('ENVIRONMENT').get('width')
+        self.create_patches(p.get('ENVIRONMENT').get('n_patches'))
 
     def __str__(self):
         return "<Environment length:%s width:%s number of patches:%s>" % (
@@ -55,6 +52,7 @@ class Environment(Entity):
             patch.x_pos, patch.y_pos = self.patch_location(patch.radius)
 
         self.children.append(patch)
+        return patch
 
     def patch_location(self, radius):
         '''
@@ -105,4 +103,7 @@ class Environment(Entity):
 
     def create_patches(self, n_patches=0):
         for i in range(n_patches):
-            self.add_patch()
+            self.add_patch().create_entities(
+                random.randint(
+                    self.p['PATCH']['min_entities_per_patch'],
+                    self.p['PATCH']['max_entities_per_patch']))

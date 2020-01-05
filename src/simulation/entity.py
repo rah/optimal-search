@@ -1,6 +1,7 @@
 class Entity(object):
     '''
     An entity has:
+      - energy
       - position(x,y)
       - size(length, width)
       - energy
@@ -10,18 +11,15 @@ class Entity(object):
 
     def __init__(
             self,
-            energy=0.0,
-            x_pos=0.0,
-            y_pos=0.0,
-            length=0.0,
-            width=0.0,
+            p,
             parent=None,
             children=None):
-        self.energy = energy
-        self.x_pos = x_pos
-        self.y_pos = y_pos
-        self.length = length
-        self.width = width
+        self.p = p
+        self.energy = p.get("ENTITY").get("energy", 0.0)
+        self.x_pos = p.get("ENTITY").get("x_pos", 0.0)
+        self.y_pos = p.get("ENTITY").get("y_pos", 0.0)
+        self.length = p.get("ENTITY").get("length", 0.0)
+        self.width = p.get("ENTITY").get("width", 0.0)
         self.parent = parent
         if children is None:
             self.children = []
@@ -37,6 +35,11 @@ class Entity(object):
     def remove_self(self):
         if self.parent is not None:
             self.parent.children.remove(self)
+
+    def number_children():
+        if children is None:
+            return 0
+        else return len(children)
 
     def total_energy(self):
         '''

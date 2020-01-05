@@ -4,7 +4,6 @@ Provides a convenient wrapper to run a set of simulation.
 Parameters for the simulations are contained in a properties file.
 """
 import configparser
-import random
 from scipy import stats
 import numpy as np
 import pylab
@@ -15,47 +14,83 @@ from src.simulation.predator import Predator
 
 def default_params():
     params = {
-        'env_size': 1000,
-        'n_patches': 20,
-        'n_trials': 100,
-        'max_moves': 5000,
-        'max_entities_per_patch': 50,
-        'min_entities_per_patch': 5,
+        'SIMULATION': {
+            'n_trials': 100
+        },
+        'ENVIRONMENT': {
+            'length': 1000,
+            'width': 1000,
+            'n_patches': 20
+        },
+        'PATCH': {
+            'max_entities_per_patch': 50,
+            'min_entities_per_patch': 5
+        },
+        'SEARCHER': {
+            'max_moves': 5000
+        }
     }
     return params
 
 
-def runsim(config_file=None):
+def get_params(config_file=None):
+    """
+    Get the parameters for the simulation
+    config_file: file name for parameters ini file
+    """
 
-    entity_results = []
-    captured_results = []
-
-    # get the paramters for the simulation
     if config_file is None:
         p = default_params()
     else:
         p = configparser.ConfigParser().read(config_file)
 
-    for trial in range(p['n_trials']):
-        # Set up the environment
-        env = Environment(p['env_size'], p['env_size'], p['n_patches'])
-        entities = random.randint(p['min_entities_per_patch'],
-                                  p['max_entities_per_patch'])
-        for patch in env.children:
-            patch.create_entities(entities)
+    return p
 
-        pred = Predator()
-        pred.xpos = env.length / 2.0
-        pred.y_pos = env.width / 2.0
-        pred.parent = env
+
+def total_entities_in_environment(e):
+    n = 0
+    for patch in e.children:
+        n += patch.number_children()
+
+    return n
+
+
+def create_predator(p, e):
+    pred = Predator()
+    pred.xpos = e.length / 2.0
+    pred.y_pos = e.width / 2.0
+    pred.parent = e
+
+    return pred
+
+
+def run_predator(p):
+    p.move()
+    entity = p.detect()
+    p.capture(entity)
+
+
+def runsim(config_file=None):
+    """
+    Run the simulation
+
+    config_file: file name of configuration parameters
+    """
+
+    entity_results = []
+    captured_results = []
+
+    p = get_params(config_file)
+
+    for trial in range(p['SIMULATION']['n_trials']):
+        env = Environment(p)
+        pred = create_predator(p, env)
 
         for i in range(p['max_moves']):
-            pred.move()
-            entity = pred.detect()
-            pred.capture(entity)
+            run_predator(p)
 
-        entity_results.append(entities)
-        captured_results.append(len(pred.captured))
+        entity_results.append(total_entities_in_environment(env))
+        captured_results.append(pred.total_captured)
 
     return entity_results, captured_results
 
@@ -80,4 +115,7 @@ def analyse_results(entity_results, captured_results):
     # Plotting
     pylab.plot(x, y, 'o')
     pylab.plot(x, predict_y, 'k-')
+    pylab.title("Captured vs Detected Items")
+    pylab.xlabel("No. Entity Detected")
+    pylab.ylabel("No. Entity Captured")
     pylab.show()
