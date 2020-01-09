@@ -12,39 +12,15 @@ from src.simulation.environment import Environment
 from src.simulation.predator import Predator
 
 
-def default_params():
-    params = {
-        'SIMULATION': {
-            'n_trials': 100
-        },
-        'ENVIRONMENT': {
-            'length': 1000,
-            'width': 1000,
-            'n_patches': 20
-        },
-        'PATCH': {
-            'max_entities_per_patch': 50,
-            'min_entities_per_patch': 5
-        },
-        'SEARCHER': {
-            'max_moves': 5000
-        }
-    }
-    return params
-
-
 def get_params(config_file=None):
     """
     Get the parameters for the simulation
     config_file: file name for parameters ini file
     """
+    config = configparser.ConfigParser()
+    config.read(config_file)
 
-    if config_file is None:
-        p = default_params()
-    else:
-        p = configparser.ConfigParser().read(config_file)
-
-    return p
+    return config
 
 
 def total_entities_in_environment(e):
@@ -53,21 +29,6 @@ def total_entities_in_environment(e):
         n += patch.number_children()
 
     return n
-
-
-def create_predator(p, e):
-    pred = Predator()
-    pred.xpos = e.length / 2.0
-    pred.y_pos = e.width / 2.0
-    pred.parent = e
-
-    return pred
-
-
-def run_predator(p):
-    p.move()
-    entity = p.detect()
-    p.capture(entity)
 
 
 def runsim(config_file=None):
@@ -82,15 +43,21 @@ def runsim(config_file=None):
 
     p = get_params(config_file)
 
-    for trial in range(p['SIMULATION']['n_trials']):
+    for trial in range(p.getint('SIMULATION', 'n_trials')):
         env = Environment(p)
-        pred = create_predator(p, env)
+        env.create_patches()
 
-        for i in range(p['max_moves']):
-            run_predator(p)
+        pred = Predator(p, parent=env)
+        pred.xpos = env.length / 2.0
+        pred.y_pos = env.width / 2.0
+
+        for i in range(p.getint('SIMULATION', 'max_moves')):
+            pred.move()
+            entity = pred.detect()
+            pred.capture(entity)
 
         entity_results.append(total_entities_in_environment(env))
-        captured_results.append(pred.total_captured)
+        captured_results.append(pred.total_captured())
 
     return entity_results, captured_results
 

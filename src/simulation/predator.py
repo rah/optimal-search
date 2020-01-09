@@ -8,8 +8,8 @@ class Predator(Searcher):
     Searches for and eats entitys
     '''
 
-    def __init__(self):
-        Searcher.__init__(self)
+    def __init__(self, p, parent=None):
+        Searcher.__init__(self, p, parent=parent)
         self.captured = []
         self.time_since_capture = Searcher.MAX_TIME_SINCE_ENC
 
@@ -29,3 +29,6 @@ class Predator(Searcher):
     def move(self):
         self.time_since_capture += 1
         super(Predator, self).move()
+
+    def total_captured(self):
+        return len(self.captured)

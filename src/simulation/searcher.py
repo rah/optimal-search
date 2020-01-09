@@ -1,5 +1,4 @@
 import sys
-import random
 from math import hypot
 
 from src.simulation.animate import Animate
@@ -10,29 +9,16 @@ class Searcher(Animate):
     Simple searcher that has a concept of time and encounters
     '''
     MAX_TIME_SINCE_ENC = sys.maxsize
-    SPEED_DETECTION_RATIO = 10.0
 
-    def __init__(self,
-                 max_speed=1.0,
-                 average_turn=20.0,
-                 turn_std_dev=5.0,
-                 probability_positive_turn=0.5,
-                 x_pos=0.0,
-                 y_pos=0.0,
-                 parent=None):
+    def __init__(self, p, parent=None):
         # super(Searcher, self).__init__(
-        Animate.__init__(
-            self,
-            max_speed,
-            average_turn,
-            turn_std_dev,
-            probability_positive_turn,
-            x_pos,
-            y_pos,
-            parent=parent)
-        self.giving_up_time = 0
+        Animate.__init__(self, p, parent=parent)
+
+        self.giving_up_time = p.getint("SEARCHER", "giving_up_time")
+        self.speed_detection_ratio = p.getfloat("SEARCHER", "speed_detection_ratio")
+
         self.time_since_encounter = Searcher.MAX_TIME_SINCE_ENC
-        self.detection_range = max_speed * Searcher.SPEED_DETECTION_RATIO
+        self.detection_range = self.max_speed * self.speed_detection_ratio
 
     def move(self):
         self.time_since_encounter += 1

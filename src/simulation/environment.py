@@ -1,4 +1,4 @@
-from random import random
+import random
 
 from src.simulation.entity import Entity
 from src.simulation.patch import Patch
@@ -16,9 +16,7 @@ class Environment(Entity):
 
     def __init__(self, p):
         Entity.__init__(self, p)
-        self.length = p.get('ENVIRONMENT').get('length')
-        self.width = p.get('ENVIRONMENT').get('width')
-        self.create_patches(p.get('ENVIRONMENT').get('n_patches'))
+        self.create_patches()
 
     def __str__(self):
         return "<Environment length:%s width:%s number of patches:%s>" % (
@@ -33,7 +31,7 @@ class Environment(Entity):
         '''
         if patch is None:
             # create a new empty patch
-            patch = Patch(parent=self)
+            patch = Patch(self.p, parent=self)
 
         if patch.parent is None:
             patch.parent = self
@@ -41,7 +39,7 @@ class Environment(Entity):
         # set the size of the patch
         # TODO: Allow for instance parent max ratio
         if patch.radius is None or patch.radius == 0.0:
-            patch.radius = random() * (
+            patch.radius = random.random() * (
                 self.width * Environment.MAX_PATCH_RADIUS_RATIO)
 
         # set the location of the patch
@@ -62,8 +60,8 @@ class Environment(Entity):
         TODO: Account for the patch radius
               Create different types of distributions
         '''
-        x = self.length * random()
-        y = self.width * random()
+        x = self.length * random.random()
+        y = self.width * random.random()
 
         x, y = self.check_radius(x, y, radius)
 
@@ -101,9 +99,9 @@ class Environment(Entity):
 
         return False
 
-    def create_patches(self, n_patches=0):
-        for i in range(n_patches):
+    def create_patches(self):
+        for i in range(self.p.getint('ENVIRONMENT', 'n_patches')):
             self.add_patch().create_entities(
                 random.randint(
-                    self.p['PATCH']['min_entities_per_patch'],
-                    self.p['PATCH']['max_entities_per_patch']))
+                    self.p.getint('PATCH', 'min_entities_per_patch'),
+                    self.p.getint('PATCH', 'max_entities_per_patch')))

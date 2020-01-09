@@ -15,11 +15,11 @@ class Entity(object):
             parent=None,
             children=None):
         self.p = p
-        self.energy = p.get("ENTITY").get("energy", 0.0)
-        self.x_pos = p.get("ENTITY").get("x_pos", 0.0)
-        self.y_pos = p.get("ENTITY").get("y_pos", 0.0)
-        self.length = p.get("ENTITY").get("length", 0.0)
-        self.width = p.get("ENTITY").get("width", 0.0)
+        self.energy = p.getfloat("ENTITY", "energy")
+        self.x_pos = p.getfloat("ENTITY", "x_pos")
+        self.y_pos = p.getfloat("ENTITY", "y_pos")
+        self.length = p.getint("ENTITY", "length")
+        self.width = p.getint("ENTITY", "width")
         self.parent = parent
         if children is None:
             self.children = []
@@ -36,10 +36,11 @@ class Entity(object):
         if self.parent is not None:
             self.parent.children.remove(self)
 
-    def number_children():
-        if children is None:
+    def number_children(self):
+        if self.children:
+            return len(self.children)
+        else:
             return 0
-        else return len(children)
 
     def total_energy(self):
         '''

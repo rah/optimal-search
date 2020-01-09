@@ -14,26 +14,19 @@ class Animate(Entity):
     '''
 
     def __init__(
-            self,
-            max_speed=1.0,
-            average_turn=20.0,
-            turn_std_dev=5.0,
-            probability_positive_turn=0.5,
-            x_pos=0.0,
-            y_pos=0.0,
-            parent=None):
+            self, p, parent=None):
 
-        Entity.__init__(self, x_pos=x_pos, y_pos=y_pos, parent=parent)
+        Entity.__init__(self, p, parent=parent)
 
         # basic attributes
-        self.direction = 0.0
-        self.max_speed = max_speed
-        self.average_turn = average_turn
-        self.turn_std_dev = turn_std_dev
-        self.positive_turn = probability_positive_turn
+        self.direction = p.getfloat("ANIMATE", "direction")
+        self.max_speed = p.getfloat("ANIMATE", "max_speed")
+        self.average_turn = p.getfloat("ANIMATE", "average_turn")
+        self.turn_std_dev = p.getfloat("ANIMATE", "turn_std_dev")
+        self.positive_turn = p.getfloat("ANIMATE", "positive_turn")
 
-        self.curr_x = x_pos
-        self.curr_y = y_pos
+        self.curr_x = self.x_pos
+        self.curr_y = self.y_pos
 
         # Memory of movement
         self.X = []  # x position
