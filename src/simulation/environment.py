@@ -11,11 +11,13 @@ class Environment(Entity):
     - one searcher
     '''
 
-    # In calculating the radius of a patch this constraint can be used
-    MAX_PATCH_RADIUS_RATIO = 0.1
-
     def __init__(self, p):
         Entity.__init__(self, p)
+        self.length = p.getint('ENVIRONMENT', 'length')
+        self.width = p.getint('ENVIRONMENT', 'width')
+        self.max_patch_radius_ratio = p.getfloat(
+            'ENVIRONMENT', 'max_patch_radius_ratio')
+
         self.create_patches()
 
     def __str__(self):
@@ -40,7 +42,7 @@ class Environment(Entity):
         # TODO: Allow for instance parent max ratio
         if patch.radius is None or patch.radius == 0.0:
             patch.radius = random.random() * (
-                self.width * Environment.MAX_PATCH_RADIUS_RATIO)
+                self.width * self.max_patch_radius_ratio)
 
         # set the location of the patch
         if (
