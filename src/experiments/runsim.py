@@ -45,7 +45,6 @@ def runsim(config_file=None):
 
     for trial in range(p.getint('SIMULATION', 'n_trials')):
         env = Environment(p)
-        env.create_patches()
 
         pred = Predator(p, parent=env)
         pred.xpos = env.length / 2.0
@@ -82,7 +81,7 @@ def analyse_results(entity_results, captured_results):
     # Plotting
     pylab.plot(x, y, 'o')
     pylab.plot(x, predict_y, 'k-')
-    pylab.title("Captured vs Detected Items")
-    pylab.xlabel("No. Entity Detected")
+    pylab.title("Captured vs Total Entities")
+    pylab.xlabel("No. Entity in Environment")
     pylab.ylabel("No. Entity Captured")
     pylab.show()
