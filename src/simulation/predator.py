@@ -5,7 +5,7 @@ from src.simulation.searcher import Searcher
 
 class Predator(Searcher):
     '''
-    Searches for and eats entitys
+    Searches for and captures entitys
     '''
 
     def __init__(self, p, parent=None):
@@ -27,7 +27,6 @@ class Predator(Searcher):
                 entity.remove_self()  # remove from patch
 
     def move(self):
-        self.time_since_capture += 1
         super(Predator, self).move()
 
     def total_captured(self):

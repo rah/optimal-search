@@ -8,7 +8,7 @@ class Searcher(Animate):
     '''
     Simple searcher that has a concept of time and encounters
     '''
-    MAX_TIME_SINCE_ENC = sys.maxsize
+    MAX_TIME_SINCE_ENC = sys.maxsize # set to an arbitary large number
 
     def __init__(self, p, parent=None):
         # super(Searcher, self).__init__(

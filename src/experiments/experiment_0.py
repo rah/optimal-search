@@ -3,10 +3,11 @@
 Run simulation experiments
 """
 import src.experiments.runsim as rs
+import src.analysis.analysis as an
 
 def run_experiment(config_file):
-    er, cr = rs.runsim(config_file=config_file)
-    rs.analyse_results(er, cr)
+    data = rs.runsim(config_file=config_file)
+    an.analyse_results(data)
 
 
 def experiment_1():

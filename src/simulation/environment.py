@@ -102,8 +102,12 @@ class Environment(Entity):
         return False
 
     def create_patches(self):
-        for i in range(self.p.getint('ENVIRONMENT', 'n_patches')):
+        n_patches = random.randint(
+            self.p.getint('ENVIRONMENT', 'min_patches'),
+            self.p.getint('ENVIRONMENT', 'max_patches'))
+
+        for i in range(n_patches):
             self.add_patch().create_entities(
                 random.randint(
-                    self.p.getint('PATCH', 'min_entities_per_patch'),
-                    self.p.getint('PATCH', 'max_entities_per_patch')))
+                    self.p.getint('PATCH', 'min_entities'),
+                    self.p.getint('PATCH', 'max_entities')))

@@ -1,12 +1,9 @@
 #! /usr/env/python
 """
-Provides a convenient wrapper to run a set of simulation.
+Simple wrapper to run a set of simulation.
 Parameters for the simulations are contained in a properties file.
 """
 import configparser
-from scipy import stats
-import numpy as np
-import pylab
 
 from src.simulation.environment import Environment
 from src.simulation.predator import Predator
@@ -23,14 +20,6 @@ def get_params(config_file=None):
     return config
 
 
-def total_entities_in_environment(e):
-    n = 0
-    for patch in e.children:
-        n += patch.number_children()
-
-    return n
-
-
 def runsim(config_file=None):
     """
     Run the simulation
@@ -38,8 +27,10 @@ def runsim(config_file=None):
     config_file: file name of configuration parameters
     """
 
-    entity_results = []
-    captured_results = []
+    results = {
+        'environment': [],
+        'predator': []
+    }
 
     p = get_params(config_file)
 
@@ -55,33 +46,7 @@ def runsim(config_file=None):
             entity = pred.detect()
             pred.capture(entity)
 
-        entity_results.append(total_entities_in_environment(env))
-        captured_results.append(pred.total_captured())
+        results['environment'].append(env)
+        results['predator'].append(pred)
 
-    return entity_results, captured_results
-
-
-def analyse_results(entity_results, captured_results):
-    x = np.array(entity_results)
-    y = np.array(captured_results)
-
-    slope, intercept, r_value, p_value, \
-        slope_std_error = stats.linregress(x, y)
-
-    print("Slope, intercept:", slope, intercept)
-    print("R-squared:", r_value**2)
-
-    # Calculate some additional outputs
-    predict_y = intercept + slope * x
-    pred_error = y - predict_y
-    degrees_of_freedom = len(x) - 2
-    residual_std_error = np.sqrt(np.sum(pred_error**2) / degrees_of_freedom)
-    print("Residual Std Error = ", residual_std_error)
-
-    # Plotting
-    pylab.plot(x, y, 'o')
-    pylab.plot(x, predict_y, 'k-')
-    pylab.title("Captured vs Total Entities")
-    pylab.xlabel("No. Entity in Environment")
-    pylab.ylabel("No. Entity Captured")
-    pylab.show()
+    return results
