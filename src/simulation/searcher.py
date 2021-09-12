@@ -34,9 +34,10 @@ class Searcher(Animate):
     def is_entity_in_detection_range(self):
         '''
         Determines if an entity is within detection range.
+        To avoid having to check every entity, only check for 
+        entities within a patch if within a patch.
 
-        To avoid having to check every entity, only check for entities within a
-        patch if within a patch.
+        Returns the entity if detected or None
         '''
         entity_found = None
         in_patch = self.is_in_patch()
