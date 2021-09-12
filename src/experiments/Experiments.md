@@ -9,9 +9,8 @@ Variables to be considered:
 - Turn variability
 - Prey replacement
 
-### Random Search in Single Patch (Homogeneous Environment)
-- Given random search with a set angle of turn and varience within a single patch/environment what is the number of prey captured. 
-
+### E0: Random Search in Single Patch with Replacement
+Given random search with a set angle of turn and varience within a single patch/environment what is the number of prey captured. 
  Variables to be modified:
  - Single Patch equal to environment size:
  - Prey density increasing 10, 20 ,40, 80, 160, etc
@@ -21,7 +20,18 @@ Variables to be considered:
 
 This represents a homogenous environement where prey are distributed randomly. So we are looking at three variables and determining their relationship.
 
-Repeat the above where prey do not get replaced. This represents the drop in capture as the resource gets depeleted.
+### E1: Random Search in Single Patch with No Replacement
+Repeat the above where prey do not get replaced. This represents the drop in capture as the resource gets depeleted in a patch. So a single patch in a heterogeneous environment
+
+### E3: Random Search in Multiple Patches
+
+Variables:
+- Patch Size
+- Distance between patches
+- Patch density
+- Angle of turn
+- Varience of turn
+
 
 
 
