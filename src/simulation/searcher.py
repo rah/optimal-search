@@ -25,6 +25,9 @@ class Searcher(Animate):
         super(Searcher, self).move()
 
     def detect(self):
+        '''
+        Top level wrapper for detection of an entity
+        '''
         entity_detected = self.is_entity_in_detection_range()
         if entity_detected is not None:
             self.time_since_encounter = 0
