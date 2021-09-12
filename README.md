@@ -6,7 +6,7 @@ Polynices snails search for prey in the intertidal zone at low tide. The environ
 which they search represents a 2-dimensional plane. Prey items appear to be detected via mechanical response
 rather than chemical senses (although this is likely to play a part). 
 
-This analysis asks two questions concerning the optinal search path:
+This analysis asks two questions concerning the optimal search path:
  - to find a prey item given an environmental abundance of that item
  - to find a prey item once discovered and the prey item evades the predator
  - when to give up searching in a particular area
