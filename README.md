@@ -3,7 +3,7 @@
 Data and analysis from studies into optimal search of predatory snail _Polinices_.
 
 <p align="center">
-![_Polynices sp_](https://avatars.githubusercontent.com/u/70077?v=4)
+    <img src="https://avatars.githubusercontent.com/u/70077?v=4">
 </p>
 
 Polynices snails search for prey in the intertidal zone at low tide. The environment within
