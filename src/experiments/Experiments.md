@@ -18,7 +18,7 @@ Given random search with a set angle of turn and varience within a single patch/
  - Modify variance in angle of turn between low and high variablity
  - Prey get replaced on removal so density stays the same
 
-This represents a homogenous environment where prey are distributed randomly. So we are looking at three variables and determining their relationship. There are about 30 combinations here (Density=5) x (Angle Turn=3) x (Varience=low|high). Whilst these combinations may not reflect the true experimental space they are a start and so my provide some insight.
+This represents a homogenous environment where prey are distributed randomly. So we are looking at three variables and determining their relationship. There are about 30 combinations here (Density=5) x (Angle Turn=3) x (Varience=low|high). Whilst these combinations may not reflect the true experimental space they are a start and so may provide some insight.
 
 #### ER0.1 Vary by prey density with low turn rate. low varience
  - Prey density = 10, 20, 40, 80, 160
