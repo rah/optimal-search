@@ -52,6 +52,12 @@ class Searcher(Animate):
         return entity_found
 
     def is_in_patch(self):
+        '''
+        Determines if the searcher is in a patch:
+            If the euclidean distance of the searcher from the centre of the patch 
+            is less than the radius of the patch then
+                returns the patch otherwise None
+        '''
         patch_found = None
         for patch in self.parent.children:
             if hypot(
@@ -60,5 +66,4 @@ class Searcher(Animate):
             ) <= patch.radius:
                 patch_found = patch
                 break
-
         return patch_found

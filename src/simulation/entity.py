@@ -4,7 +4,6 @@ class Entity(object):
       - energy
       - position(x,y)
       - size(length, width)
-      - energy
     An entity may have a parent entity
     An entity may have child entities
     '''
