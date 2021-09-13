@@ -3,21 +3,10 @@
 Simple wrapper to run a set of simulation.
 Parameters for the simulations are contained in a properties file.
 """
-import configparser
+from simutil import get_params
 
 from src.simulation.environment import Environment
 from src.simulation.predator import Predator
-
-
-def get_params(config_file=None):
-    """
-    Get the parameters for the simulation
-    config_file: file name for parameters ini file
-    """
-    config = configparser.ConfigParser()
-    config.read(config_file)
-
-    return config
 
 
 def runsim(config_file=None):
