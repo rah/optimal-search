@@ -5,7 +5,7 @@ import pylab
 
 
 def entities_in_environment(e):
-    p, n = 0
+    p = n = 0
     for patch in e.children:
         p += 1
         n += patch.number_children()
@@ -21,9 +21,9 @@ def extract_data(results):
         'total_captured': []
         }
 
-    for trial in range(len(results)):
-        env = results[trial]['environment']
-        pred = results[trial]['predator']
+    for trial in range(len(results['environment'])):
+        env = results['environment'][trial]
+        pred = results['predator'][trial]
 
         n_patches, n_entities = entities_in_environment(env)
 
