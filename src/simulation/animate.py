@@ -1,7 +1,7 @@
 import random
 from math import cos, sin, radians
 
-from src.simulation.entity import Entity
+from simulation.entity import Entity
 
 
 class Animate(Entity):

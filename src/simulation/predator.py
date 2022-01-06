@@ -1,6 +1,6 @@
 import random
 
-from src.simulation.searcher import Searcher
+from simulation.searcher import Searcher
 
 
 class Predator(Searcher):

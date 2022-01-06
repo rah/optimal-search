@@ -1,7 +1,7 @@
 import sys
 from math import hypot
 
-from src.simulation.animate import Animate
+from simulation.animate import Animate
 
 
 class Searcher(Animate):

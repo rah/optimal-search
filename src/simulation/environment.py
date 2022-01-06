@@ -1,7 +1,7 @@
 import random
 
-from src.simulation.entity import Entity
-from src.simulation.patch import Patch
+from simulation.entity import Entity
+from simulation.patch import Patch
 
 
 class Environment(Entity):
