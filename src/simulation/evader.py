@@ -1,4 +1,4 @@
-from src.simulation.animate import Animate
+from animate import Animate
 
 
 class Evader(Animate):
