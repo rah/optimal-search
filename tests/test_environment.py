@@ -1,11 +1,12 @@
 import unittest
-from environment import Environment
+from context import src
+from context import config
 
 
 class TestEnvironment(unittest.TestCase):
 
     def setUp(self):
-        self.env = Environment()
+        self.env = src.simulation.environment.Environment(config)
 
     def test_instance(self):
         self.assertIsNotNone(self.env)
@@ -24,5 +25,6 @@ class TestEnvironment(unittest.TestCase):
 
     def test_create_patches(self):
         self.env.children = []
-        self.env.create_patches(10)
-        self.assertEqual(len(self.env.children), 10)
+        self.env.create_patches()
+        self.assertGreaterEqual(len(self.env.children), config.getint("ENVIRONMENT", "min_patches"))
+        self.assertLessEqual(len(self.env.children), config.getint("ENVIRONMENT", "max_patches"))

@@ -1,11 +1,12 @@
 import unittest
-import searcher
+from context import src
+from context import config
 
 
 class TestSearcher(unittest.TestCase):
 
     def setUp(self):
-        self.mover = searcher.Searcher()
+        self.mover = src.simulation.searcher.Searcher(config)
 
     def test_instance(self):
         self.assertIsNotNone(self.mover)
@@ -23,4 +24,4 @@ class TestSearcher(unittest.TestCase):
         self.assertTrue(self.mover.giving_up_time == 0)
         self.assertTrue(
             self.mover.time_since_encounter ==
-            searcher.Searcher.MAX_TIME_SINCE_ENC)
+            src.simulation.searcher.Searcher.MAX_TIME_SINCE_ENC)

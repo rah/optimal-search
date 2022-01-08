@@ -1,11 +1,12 @@
 import unittest
-import animate
+from context import src
+from context import config
 
 
 class TestAnimate(unittest.TestCase):
 
     def setUp(self):
-        self.mover = animate.Animate()
+        self.mover = src.simulation.animate.Animate(config)
 
     def test_instance(self):
         self.assertIsNotNone(self.mover)

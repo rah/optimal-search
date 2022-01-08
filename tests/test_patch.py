@@ -1,11 +1,12 @@
 import unittest
-import patch
+from context import src
+from context import config
 
 
 class TestPatch(unittest.TestCase):
 
     def setUp(self):
-        self.patch = patch.Patch()
+        self.patch = src.simulation.patch.Patch(config)
 
     def test_instance(self):
         self.assertIsNotNone(self.patch)
