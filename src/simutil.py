@@ -7,8 +7,8 @@ from simulation.environment import Environment
 from simulation.predator import Predator
 
 def get_params(config_file="/home/rah/workspace/optimal-search/src/experiments/config/default.ini"):
-    """
-    Get the parameters for the simulation
+    """Get the parameters for the simulation
+
     config_file: file name for parameters ini file
     """
     config = configparser.ConfigParser()
@@ -17,8 +17,7 @@ def get_params(config_file="/home/rah/workspace/optimal-search/src/experiments/c
     return config
 
 def runsim(p):
-    """
-    Simple wrapper to run a simulation.
+    """Simple wrapper to run a simulation. 
     Parameters for the simulations are contained in a properties file.
 
     p: configuration parameters

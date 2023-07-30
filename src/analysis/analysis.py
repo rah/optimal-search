@@ -5,6 +5,10 @@ import pylab
 
 
 def entities_in_environment(e):
+    """Counts the number of patches and number of entities in all patches
+    Input: environment e
+    Returns: p number of patches and n total number of entities
+    """
     p = n = 0
     for patch in e.children:
         p += 1
