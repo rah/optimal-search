@@ -6,7 +6,7 @@ import configparser
 from simulation.environment import Environment
 from simulation.predator import Predator
 
-def get_params(config_file="/home/rah/workspace/optimal-search/src/experiments/config/default.ini"):
+def get_params(config_file="./experiments/default.ini"):
     """Get the parameters for the simulation
 
     config_file: file name for parameters ini file

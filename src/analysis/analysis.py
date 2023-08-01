@@ -18,6 +18,18 @@ def entities_in_environment(e):
 
 
 def extract_data(results):
+    """Extracts data from the given results dictionary.
+
+    Parameters:
+    - results (dict): A dictionary containing the results of a trial.
+
+    Returns:
+    - data (dict): A dictionary containing the extracted data. It has the following keys:
+        - 'number_patches' (list): A list of the number of patches in each trial.
+        - 'total_entities' (list): A list of the total number of entities in each trial.
+        - 'total_remaining' (list): A list of the total number of remaining entities in each trial.
+        - 'total_captured' (list): A list of the total number of captured entities in each trial.
+    """
     data = {
         'number_patches': [],
         'total_entities': [],
@@ -42,6 +54,14 @@ def extract_data(results):
 
 
 def analyse_results(data):
+    """Perform a linear regression analysis on the given data.
+
+    Parameters:
+    - data: a dictionary containing the 'total_entities' and 'total_captured' data arrays
+
+    Returns:
+    None
+    """
 
     x = np.array(data['total_entities'])
     y = np.array(data['total_captured'])
