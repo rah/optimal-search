@@ -26,25 +26,68 @@ class Entity(object):
             self.children = children
 
     def add_child(self, entity):
+        """
+        Adds a child entity to the current entity.
+
+        Parameters:
+            entity (Any): The child entity to be added.
+
+        Returns:
+            None
+        """
         self.children.append(entity)
 
     def remove_child(self, entity):
+        """
+        Remove a child entity from the list of children.
+
+        Args:
+            entity: The entity to be removed.
+
+        Returns:
+            None
+        """
         self.children.remove(entity)
 
     def remove_self(self):
+        """
+        Removes the current object from its parent's list of children.
+
+        This method is used to remove the current object from its parent's list of children. 
+        It checks if the current object has a parent. 
+        If it does, it removes itself from the parent's list of children.
+
+        Parameters:
+            None
+
+        Returns:
+            None
+        """
         if self.parent is not None:
             self.parent.children.remove(self)
 
     def number_children(self):
+        """
+        Returns the number of children for the current object.
+
+        Parameters:
+            self (object): The current object.
+
+        Returns:
+            int: The number of children for the current object.
+        """
         if self.children:
             return len(self.children)
         else:
             return 0
 
     def total_energy(self):
-        '''
-        returns the sum of all energy
-        '''
+        """
+        Calculate and return the total energy of the object and its children.
+
+        Returns:
+            int: The total energy of the object and its children.
+        """
         total_energy = self.energy
         for child in self.children:
             total_energy += child.energy
@@ -52,10 +95,16 @@ class Entity(object):
         return total_energy
 
     def set_bounds(self, x, y):
-        '''
-        Ensure that x, y are within the bounds of this entity.
-        Reset x,y so that a torus is formed
-        '''
+        """
+        Set the bounds of the object based on the given x and y coordinates.
+
+        Parameters:
+            x (float): The x-coordinate of the object.
+            y (float): The y-coordinate of the object.
+
+        Returns:
+            tuple: A tuple containing the updated x and y coordinates.
+        """
         if x < 0.0:
             x = self.length
         if x > self.length:
