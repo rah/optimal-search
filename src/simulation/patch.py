@@ -1,7 +1,7 @@
 from random import random
 from math import cos, sin, radians
 
-from entity import Entity
+from simulation.entity import Entity
 
 
 def rnd_direction():

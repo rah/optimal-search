@@ -1,7 +1,7 @@
 import random
 from math import cos, sin, radians
 
-from entity import Entity
+from simulation.entity import Entity
 
 
 class Animate(Entity):
@@ -9,8 +9,7 @@ class Animate(Entity):
     A simple entity that can move around with a set of basic attributes:
     - max_speed: speed can vary between 0.0 and 1.0
     - average_turn: turns can vary between 0 and 180
-    - turn_std_dev: describes the variability of a turn
-    - probability
+    - turn_std_dev: describes the variability of a turn probability
     '''
 
     def __init__(

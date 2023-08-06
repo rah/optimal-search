@@ -1,7 +1,7 @@
 import sys
 from math import hypot
 
-from animate import Animate
+from simulation.animate import Animate
 
 
 class Searcher(Animate):
@@ -11,16 +11,27 @@ class Searcher(Animate):
     MAX_TIME_SINCE_ENC = sys.maxsize # set to an arbitary large number
 
     def __init__(self, p, parent=None):
-        # super(Searcher, self).__init__(
         Animate.__init__(self, p, parent=parent)
 
         self.giving_up_time = p.getint("SEARCHER", "giving_up_time")
         self.speed_detection_ratio = p.getfloat("SEARCHER", "speed_detection_ratio")
 
+        # Set this as a high number initially
         self.time_since_encounter = Searcher.MAX_TIME_SINCE_ENC
+
+        # The detection range of the searcher is a proportion of the max speed
         self.detection_range = self.max_speed * self.speed_detection_ratio
 
     def move(self):
+        """
+        Increment the time since encounter by 1 and then call the move method of the parent class.
+
+        Parameters:
+        None
+
+        Returns:
+        None
+        """
         self.time_since_encounter += 1
         super(Searcher, self).move()
 

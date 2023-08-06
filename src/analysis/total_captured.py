@@ -1,4 +1,4 @@
-# Initial analyses
+# Present the number captured vs the total number of entities
 from scipy import stats
 import numpy as np
 import pylab
@@ -17,7 +17,7 @@ def entities_in_environment(e):
     return p, n
 
 
-def extract_data(results):
+def extract_captured(results):
     """Extracts data from the given results dictionary.
 
     Parameters:
