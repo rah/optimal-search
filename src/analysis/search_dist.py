@@ -1,6 +1,4 @@
-# Present the search area as a 2 dimentional rectange
-from scipy import stats
-import numpy as np
+# Present the search area as a 2 dimensional rectange
 import pylab
 
 def extract_search_paths(results):
@@ -29,6 +27,7 @@ def extract_search_paths(results):
     return x, y
 
 def plot_search_dist(x, y):
+    #TODO more work needed here
     """
     Plot the search distribution.
     

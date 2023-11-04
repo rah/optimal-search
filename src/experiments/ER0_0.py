@@ -20,3 +20,4 @@ x, y = sd.extract_search_paths(results)
 
 # %%
 sd.plot_search_dist(x, y)
+# %%

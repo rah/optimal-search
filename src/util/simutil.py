@@ -5,6 +5,7 @@ import configparser
 
 from simulation.environment import Environment
 from simulation.predator import Predator
+from random import random
 
 def get_params(config_file="./experiments/default.ini"):
     """Get the parameters for the simulation
@@ -33,8 +34,10 @@ def runsim(p):
         env = Environment(p)
 
         pred = Predator(p, parent=env)
-        pred.xpos = env.length / 2.0
-        pred.y_pos = env.width / 2.0
+
+        # randomise the initial location of the predator
+        pred.setx(random() * env.length)
+        pred.sety(random() * env.width)
 
         for i in range(p.getint('SIMULATION', 'max_moves')):
             pred.move()
